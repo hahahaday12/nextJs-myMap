@@ -1,4 +1,4 @@
-# 🗺 "맛"나 지도
+# 🗺 "맛"남 지도
 ## nextJs로 만든 지도 기반 프로젝트 😋🍽
 
  <img width="600" alt="image" src="https://github.com/FastCampus-Mini5/FE-Of-course/assets/101441685/db047571-0f58-4161-998d-b037e4e9af9b">

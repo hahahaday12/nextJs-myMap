@@ -4,15 +4,29 @@ import Link from 'next/link';
 import { VscFeedback } from 'react-icons/vsc';
 import { AiOutlineShareAlt } from 'react-icons/ai';
 import MapSection from '@/components/home/MapSection';
+import { Store } from '@/types/store';
+import useStores from '@/hooks/useStores';
+import { useEffect } from 'react';
+import { NextPage } from 'next/types';
 
-export default function Feedback() {
+interface Props {
+  stores: Store[];
+}
+
+const Home: NextPage<Props> = ({ stores }) => {
+  const { initializeStores } = useStores();
+
+  useEffect(() => {
+    initializeStores(stores);
+  }, [initializeStores, stores]);
+
   return (
     <>
       <Header
         rightElements={[
           <button
             onClick={() => {
-              alert('복사');
+              alert('복사!');
             }}
             className={styles.box}
             style={{ marginRight: 8 }}
@@ -30,4 +44,14 @@ export default function Feedback() {
       </main>
     </>
   );
+};
+export default Home;
+
+export async function getStaticProps() {
+  const stores = (await import('../public/stores.json')).default;
+
+  return {
+    props: { stores },
+    revalidate: 60 * 60,
+  };
 }
